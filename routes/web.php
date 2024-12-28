@@ -26,20 +26,21 @@ use App\config\mail;
 */
 
 Route::get('/', function () {
+     return view('welcome');
 
-
-    $data = [
-
-        'title'=> 'Welcome the new Mail Mailgun Setup',
-        'Content'=> 'This is mail Mailgun Setup Format',
-    ];
-
-    Mail::sent('emails.mails', $data, function($message){
-
-        $message->to('dhilipkumarcit@hgmail.com', 'Dhilip')->subject('Welcome Dhilip How are you');
-    });
-    // return view('welcome');
 });
+    // $data = [
+
+    //     'title'=> 'Welcome the new Mail Mailgun Setup',
+    //     'Content'=> 'This is mail Mailgun Setup Format',
+    // ];
+
+    // Mail::sent('emails.mails', $data, function($message){
+
+    //     $message->to('dhilipkumarcit@hgmail.com', 'Dhilip')->subject('Welcome Dhilip How are you');
+    // });
+   
+
 
 // Auth::routes();
 
@@ -80,7 +81,7 @@ Route::get('/insert', function(){
 
 
     $addresss = new Address([
-        'name' => 'Welcome to the Insert data in Database',
+        'name' => 'Welcome to the Insert data in Databases',
         'email' => 'example@example.com', // Ensure you set a unique email
         'user_id' => 1, // Replace with a valid user_id
         'password' => bcrypt('password'), // Encrypt the password

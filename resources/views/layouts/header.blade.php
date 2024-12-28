@@ -97,6 +97,7 @@
 							<!-- Top Contact -->
 							<ul class="top-contact">
 								<li><i class="fa fa-phone"></i>+880 1234 56789</li>
+								 
 								<li><i class="fa fa-envelope"></i><a href="mailto:support@yourmail.com">support@yourmail.com</a></li>
 							</ul>
 							<!-- End Top Contact -->
@@ -140,6 +141,7 @@
 												
 											</li>
 											<li><a href="{{ url('/contact') }}">Contact Us</a></li>
+											<li><a href="{{ url('/dashboard') }}">Admin</a></li>
 										</ul>
 									</nav>
 								</div>
