@@ -16,7 +16,7 @@
 
 	<title>Blank Page | AdminKit Demo</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href="{{('assets/admin/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -34,12 +34,17 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="{{url('dashboard')}}">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="{{url('page-blank')}}">
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+            </a>
+					</li>
 
-					<li class="sidebar-item">
+					<!-- <li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.html">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
             </a>
@@ -57,11 +62,7 @@
             </a>
 					</li>
 
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="pages-blank.html">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-            </a>
-					</li>
+					
 
 					<li class="sidebar-header">
 						Tools & Components
@@ -111,20 +112,10 @@
 						<a class="sidebar-link" href="maps-google.html">
               <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
             </a>
-					</li>
+					</li> -->
 				</ul>
 
-				<div class="sidebar-cta">
-					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-						<div class="mb-3 text-sm">
-							Are you looking for more components? Check out our premium version.
-						</div>
-						<div class="d-grid">
-							<a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade to Pro</a>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</nav>
 
@@ -340,7 +331,7 @@
 		</div>
 	</div>
 
-	<script src="js/app.js"></script>
+	<script src="{{('assets/admin/js/app.js')}} "></script>
 
 </body>
 

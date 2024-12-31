@@ -12,8 +12,9 @@ use App\Models\post;
 use App\Models\Update;
 
 use App\config\mail;
-
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BlankController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +52,19 @@ Route::get('/contact', [Contact::class, 'index']);
 
 Route::get('/blog', [BlogController::class, 'blog']);
 
+// Route::middleware('guest')->group(function () {
+
+//     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+//     Route::post('/login', [LoginController::class, 'login']);
+
+// });
+
+
+
+Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+
+Route::get('/page-blank', [BlankController::class, 'blank']);
 
 Route::get('/error', [ErrorController::class, 'error']);
 
@@ -127,7 +141,7 @@ Route::get('dates', function(){
 
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
