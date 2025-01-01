@@ -11,4 +11,11 @@ class BlankController extends Controller
 
     return view('layouts.admin.page-blank');
    }
+
+   public function store(){
+
+    dd(request())->all();
+
+   }
+
 }

@@ -40,7 +40,7 @@
 					</li>
 
 					<li class="sidebar-item active">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="{{url('dashboard')}}">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
@@ -65,7 +65,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{url('/page-blank')}}">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Create Post</span>
             </a>
 					</li>
 <!-- 

@@ -284,40 +284,18 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">New Posts</h1>
+					<h1 class="h3 mb-3">Blank Page</h1>
 
 					<div class="row">
-
-					<form action="{{ route('layouts.admin.page-blank.store') }}" method="POST" enctype="multipart/form-data">
-						@csrf
-
-						<div class="form-group mb-4">
-							<label for="title">Title:</label>
-							<input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
-							<!-- @error('title')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror -->
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Empty card</h5>
+								</div>
+								<div class="card-body">
+								</div>
+							</div>
 						</div>
-
-						<div class="form-group mb-4">
-							<label for="image">Image:</label>
-							<input type="file" name="image" id="image" class="form-control" required>
-							<!-- @error('image')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror -->
-						</div>
-
-						<div class="form-group mb-4">
-							<label for="body_content">Body Content:</label>
-							<textarea name="body_content" id="body_content" class="form-control" rows="5" required>{{ old('body_content') }}</textarea>
-							<!-- @error('body_content')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror -->
-						</div>
-
-						<button type="submit" class="btn btn-primary mt-3">Create Post</button>
-					</form>
-						
 					</div>
 
 				</div>

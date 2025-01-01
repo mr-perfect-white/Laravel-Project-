@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\News;
 use Illuminate\Database\Seeder;
 
 // cl
@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         // $this->call(Student_table::class);
-        $this->call(Student_table::class);
-
+        // $this->call(Student_table::class);
+        News::factory(50)->create();
     }
 }

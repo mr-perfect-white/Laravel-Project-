@@ -50,21 +50,32 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/contact', [Contact::class, 'index']);
 
 
-Route::get('/blog', [BlogController::class, 'blog']);
+use App\Http\Controllers\NewsController;
 
-// Route::middleware('guest')->group(function () {
+// Route::get('/blog', [BlogController::class, 'blog']);
+Route::get('/blog', [NewsController::class, 'index']);
 
-//     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
-//     Route::post('/login', [LoginController::class, 'login']);
 
-// });
+Route::get('/blog/{id}', [NewsController::class, 'show'])->name('blog.show');
 
+Route::middleware('guest')->group(function () {
+
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+    Route::post('/login', [LoginController::class, 'login']);
+
+});
 
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+// Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
 Route::get('/page-blank', [BlankController::class, 'blank']);
+
+
+
+Route::post('/page-blank/store', [BlankController::class, 'store'])->name('layouts.admin.page-blank.store');
 
 Route::get('/error', [ErrorController::class, 'error']);
 

@@ -141,6 +141,7 @@
 												
 											</li>
 											<li><a href="{{ url('/contact') }}">Contact Us</a></li>
+											
 											<li><a href="{{ url('/dashboard') }}">Admin</a></li>
 										</ul>
 									</nav>
