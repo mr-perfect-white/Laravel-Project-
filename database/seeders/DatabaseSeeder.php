@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         // $this->call(Student_table::class);
         // $this->call(Student_table::class);
-        News::factory(50)->create();
+        News::factory(100)->create();
     }
 }

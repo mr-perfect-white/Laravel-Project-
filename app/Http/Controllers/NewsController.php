@@ -26,6 +26,7 @@ class NewsController extends Controller
         // Return the view with the news item
         return view('blog.show', compact('newsItem'));
     }
+    
 
 
     
