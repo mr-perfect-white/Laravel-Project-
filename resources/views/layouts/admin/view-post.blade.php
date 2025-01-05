@@ -19,7 +19,41 @@
 	<link href="{{('assets/admin/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-
+<style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+        .pagination {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .pagination button {
+            padding: 10px 15px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+        .pagination button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
 <body>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
@@ -38,12 +72,12 @@
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
-					<li class="sidebar-item active">
+					<li class="sidebar-item ">
 						<a class="sidebar-link" href="{{url('page-blank')}}">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Create post</span>
             </a>
 					</li>
-					<li class="sidebar-item">
+					<li class="sidebar-item   active">
 						<a class="sidebar-link" href="{{url('/view-post')}}">
               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">View Posts</span>
             </a>
@@ -289,39 +323,57 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">New Posts</h1>
+					<h1 class="h3 mb-3">All Posts</h1>
 
 					<div class="row">
 
-					<form action="{{ route('layouts.admin.page-blank.store') }}" method="POST" enctype="multipart/form-data">
-						@csrf
+                        <table id="dummyTable">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>userid</th>
+                                    <th>title</th>
+                                    <th>content</th>
+                                    <th>image</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-						<div class="form-group mb-4">
-							<label for="title">Title:</label>
-							<input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
-							<!-- @error('title')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror -->
-						</div>
+                              @foreach($posts as $post)
+                                <tr>
+                                    <td> {{$post->id}}</td>
+                                    <td> {{$post->user_id}}  </td>
+                                    <td>{{$post->title}}</td>
+                                    <td>{{$post->content}}</td>
+                                    <td><img src="{{$post->image}}" alt="Image 1"></td>
+                                    <td>{{$post->created_at}}</td>
+                                    <td>{{$post->updated_at}}</td>
+                                    <td>
+                                          
+                                    <form action="{{route('view-post.destory', $post->id) }}" enctype="multipart/form-data">
+						              @csrf
+                                      @method('DELETE')
+						                <button type="submit" class="btn btn-primary mt-3">Delete</button>
+					                </form>
+                                        
+                                
+                                    </td>
 
-						<div class="form-group mb-4">
-							<label for="image">Image:</label>
-							<input type="file" name="image" id="image" class="form-control" required>
-							<!-- @error('image')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror -->
-						</div>
+                                    
+                                </tr>
+                               @endforeach
+                            </tbody>
+                        </table>
 
-						<div class="form-group mb-4">
-							<label for="body_content">Body Content:</label>
-							<textarea name="body_content" id="body_content" class="form-control" rows="5" required>{{ old('body_content') }}</textarea>
-							<!-- @error('body_content')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror -->
-						</div>
+                        <div class="pagination">
+                            <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
+                            <button id="nextBtn" onclick="nextPage()">Next</button>
+                        </div>
 
-						<button type="submit" class="btn btn-primary mt-3">Create Post</button>
-					</form>
+				
 						
 					</div>
 
@@ -359,6 +411,39 @@
 	</div>
 
 	<script src="{{('assets/admin/js/app.js')}} "></script>
+
+    <script>
+        const rowsPerPage = 7;
+        let currentPage = 1;
+        const table = document.getElementById("dummyTable");
+        const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+        function showPage(page) {
+            for (let i = 0; i < totalRows; i++) {
+                rows[i].style.display = (i >= (page - 1) * rowsPerPage && i < page * rowsPerPage) ? "table-row" : "none";
+            }
+            document.getElementById("prevBtn").disabled = page === 1;
+            document.getElementById("nextBtn").disabled = page === totalPages;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        showPage(currentPage);
+    </script>
 
 </body>
 

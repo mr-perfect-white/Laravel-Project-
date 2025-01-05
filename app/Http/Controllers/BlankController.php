@@ -1,15 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+// use App\Http\Controllers\post;
+
 
 use Illuminate\Http\Request;
 use App\Models\news;  // Import the News model
-
+use App\Models\post; 
 class BlankController extends Controller
 {
     public function blank()
     {
         return view('layouts.admin.page-blank');
+    }
+
+
+    public function view(){
+
+         $posts = news::all();
+
+        return view ('layouts.admin.view-post', ['posts'=>$posts]);
     }
 
     public function store()
@@ -32,6 +42,15 @@ class BlankController extends Controller
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'News created successfully!');
+    }
+
+
+
+    public function destory(Post $post){
+
+        $post->delete();
+
+        return back();
     }
 }
 

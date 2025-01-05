@@ -73,9 +73,15 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
 Route::get('/page-blank', [BlankController::class, 'blank']);
 
+Route::get('/view-post', [BlankController::class, 'view']);
+
+// Route::delete('/{post}/delete', [BlankController::class, 'destory']);
+
 
 
 Route::post('/page-blank/store', [BlankController::class, 'store'])->name('layouts.admin.page-blank.store');
+
+Route::delete('/view-post/{$id}/delete', [BlankController::class, 'destory'])->name('view-post.destory');
 
 Route::get('/error', [ErrorController::class, 'error']);
 
