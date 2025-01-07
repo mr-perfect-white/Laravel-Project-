@@ -81,7 +81,19 @@ Route::get('/view-post', [BlankController::class, 'view']);
 
 Route::post('/page-blank/store', [BlankController::class, 'store'])->name('layouts.admin.page-blank.store');
 
-Route::delete('/view-post/{$id}/delete', [BlankController::class, 'destory'])->name('view-post.destory');
+
+//Route::get('/edit/edit', [BlankController::class, 'edit'])->name('layouts.admin.edit');
+
+ Route::get('/edit/{id}/edit', [BlankController::class, 'edit'])->name('layouts.admin.edit');
+// Route::put('/edit/{id}', [BlankController::class, 'update'])->name('layouts.admin.update');
+
+
+// Route::delete('/view-post/{$id}/delete', [BlankController::class, 'destory'])->name('view-post.destory');
+
+// Route::delete('/view-post/{id}/delete', [BlankController::class, 'destroy'])->name('view-post.destroy');
+//Route::delete('/view-post/{id}/delete', [BlankController::class, 'destroy']) ->name('view-post.destroy');
+
+
 
 Route::get('/error', [ErrorController::class, 'error']);
 

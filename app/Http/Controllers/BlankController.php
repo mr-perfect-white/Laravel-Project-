@@ -6,7 +6,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\news;  // Import the News model
-use App\Models\post; 
+
+use App\Models\Post;
 class BlankController extends Controller
 {
     public function blank()
@@ -20,6 +21,13 @@ class BlankController extends Controller
          $posts = news::all();
 
         return view ('layouts.admin.view-post', ['posts'=>$posts]);
+    }
+
+
+    public function edit($id)
+    {
+        // Your edit logic here
+        return view('layouts.admin.view-post', compact('id'));
     }
 
     public function store()
@@ -45,12 +53,13 @@ class BlankController extends Controller
     }
 
 
-
-    public function destory(Post $post){
-
-        $post->delete();
-
-        return back();
-    }
+    // public function destroy($id)
+    // {
+    //     $news = News::findOrFail($id);  // Fetch from news table
+    //     $news->delete();  // Delete the record
+        
+    //     return redirect()->route('view-post.index')  // Redirect after deletion
+    //                      ->with('success', 'News deleted successfully.');
+    // }
 }
 

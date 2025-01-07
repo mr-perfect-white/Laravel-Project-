@@ -327,50 +327,20 @@
 
 					<div class="row">
 
-                        <table id="dummyTable">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>userid</th>
-                                    <th>title</th>
-                                    <th>content</th>
-                                    <th>image</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                       
 
-                              @foreach($posts as $post)
-                                <tr>
-                                    <td> {{$post->id}}</td>
-                                    <td> {{$post->user_id}}  </td>
-                                    <td> <a href="{{ route('layouts.admin.edit', $post->id) }}">
-    {{ $post->title }}
-</a></td>
-                                    <td>{{$post->content}}</td>
-                                    <td><img src="{{$post->image}}" alt="Image 1"></td>
-                                    <td>{{$post->created_at}}</td>
-                                    <td>{{$post->updated_at}}</td>
-                                    <td>
-                                          
-								
+                    <form method="POST" action="{{ route('layouts.admin.update', $news->id) }}">
+    @csrf
+    @method('PUT')
 
-                                
-                                    </td>
+    <label>Title:</label>
+    <input type="text" name="title" value="{{ $news->title }}" required>
 
-                                    
-                                </tr>
-                               @endforeach
-                            </tbody>
-                        </table>
+    <label>Content:</label>
+    <textarea name="content">{{ $news->content }}</textarea>
 
-                        <div class="pagination">
-                            <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
-                            <button id="nextBtn" onclick="nextPage()">Next</button>
-                        </div>
-
+    <button type="submit">Update</button>
+</form>
 				
 						
 					</div>
