@@ -48,6 +48,11 @@
               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">View Posts</span>
             </a>
 					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{url('/user')}}">
+              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">User Profile</span>
+            </a>
+					</li>
 
 					<!-- <li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.html">

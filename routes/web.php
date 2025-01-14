@@ -15,6 +15,7 @@ use App\config\mail;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BlankController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,6 +75,13 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 Route::get('/page-blank', [BlankController::class, 'blank']);
 
 Route::get('/view-post', [BlankController::class, 'view']);
+
+
+Route::get('/user', [UserController::class, 'user'])->name('layouts.admin.user.details');
+Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+
+
 
 // Route::delete('/{post}/delete', [BlankController::class, 'destory']);
 

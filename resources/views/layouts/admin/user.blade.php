@@ -19,41 +19,7 @@
 	<link href="{{('assets/admin/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        img {
-            max-width: 100px;
-            height: auto;
-        }
-        .pagination {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-        }
-        .pagination button {
-            padding: 10px 15px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
-            background-color: #f4f4f4;
-            cursor: pointer;
-        }
-        .pagination button:disabled {
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-    </style>
+
 <body>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
@@ -77,12 +43,12 @@
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Create post</span>
             </a>
 					</li>
-					<li class="sidebar-item   active">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{url('/view-post')}}">
               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">View Posts</span>
             </a>
 					</li>
-					<li class="sidebar-item">
+                    <li class="sidebar-item active">
 						<a class="sidebar-link" href="{{url('/user')}}">
               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">User Profile</span>
             </a>
@@ -328,55 +294,50 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">All Posts</h1>
+					<h1 class="h3 mb-3">User Profile</h1>
 
 					<div class="row">
 
-                        <table id="dummyTable">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>userid</th>
-                                    <th>title</th>
-                                    <th>content</th>
-                                    <th>image</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                 
 
-                              @foreach($posts as $post)
-                                <tr>
-                                    <td> {{$post->id}}</td>
-                                    <td> {{$post->user_id}}  </td>
-                                    <td> <a href="{{ route('layouts.admin.edit', $post->id) }}">
-    {{ $post->title }}
-</a></td>
-                                    <td>{{$post->content}}</td>
-                                    <td><img src="{{$post->image}}" alt="Image 1"></td>
-                                    <td>{{$post->created_at}}</td>
-                                    <td>{{$post->updated_at}}</td>
-                                    <td>
-                                          
-								
+					<form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+						@csrf
+                        @method('PUT')
+                        
+						<div class="form-group mb-4"> 
+							<label for="name">Title:</label>
+							<input type="text" name="name" id="name" class="form-control" value="{{ old('name', $user->name) }}" required>
+							@error('name')
+								<div class="alert alert-danger">{{ $message }}</div>
+							@enderror
+						</div>
+                        <div class="form-group mb-4">
+                        <label for="Email">Email:</label>
+							<input type="text" name="email" id="email" class="form-control" value="{{ old('email', $user->email) }}" required>
+							@error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+							@enderror
 
-                                
-                                    </td>
+                        </div>
+                        <div class="form-group mb-4">
+                        <label for="Password">Password:</label>
+							<input type="password" name="password" id="password" class="form-control">
+							@error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+							@enderror
 
-                                    
-                                </tr>
-                               @endforeach
-                            </tbody>
-                        </table>
-
-                        <div class="pagination">
-                            <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
-                            <button id="nextBtn" onclick="nextPage()">Next</button>
                         </div>
 
-				
+                       
+
+						<button type="submit" class="btn btn-primary mt-3">Update</button>
+
+                        @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+					</form>
 						
 					</div>
 
@@ -414,39 +375,6 @@
 	</div>
 
 	<script src="{{('assets/admin/js/app.js')}} "></script>
-
-    <script>
-        const rowsPerPage = 7;
-        let currentPage = 1;
-        const table = document.getElementById("dummyTable");
-        const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-        const totalRows = rows.length;
-        const totalPages = Math.ceil(totalRows / rowsPerPage);
-
-        function showPage(page) {
-            for (let i = 0; i < totalRows; i++) {
-                rows[i].style.display = (i >= (page - 1) * rowsPerPage && i < page * rowsPerPage) ? "table-row" : "none";
-            }
-            document.getElementById("prevBtn").disabled = page === 1;
-            document.getElementById("nextBtn").disabled = page === totalPages;
-        }
-
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                showPage(currentPage);
-            }
-        }
-
-        function nextPage() {
-            if (currentPage < totalPages) {
-                currentPage++;
-                showPage(currentPage);
-            }
-        }
-
-        showPage(currentPage);
-    </script>
 
 </body>
 
