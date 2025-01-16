@@ -78,7 +78,15 @@ Route::get('/view-post', [BlankController::class, 'view']);
 
 
 Route::get('/user', [UserController::class, 'user'])->name('layouts.admin.user.details');
+
+
+
+
+Route::get('/user-role', [UserController::class, 'user_role'])->name('layouts.admin.user-role');
+
 Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+Route::post('/user-role/user_role_store', [UserController::class, 'user_role_store'])->name('user_role_store');
 
 
 
