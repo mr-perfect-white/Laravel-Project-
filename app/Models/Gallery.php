@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Comment;
 
-class post extends Model
+class Gallery extends Model
 {
     use HasFactory;
 
-}
+    protected $table = 'galleries';
 
-
-public function comments()
-{
-    return $this->hasMany('App\Models\Comment');
+    protected $fillable = [
+        'image'
+    ];
 }

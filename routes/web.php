@@ -17,6 +17,9 @@ use App\Http\Controllers\BlankController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\RepliesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +79,15 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 Route::get('/page-blank', [BlankController::class, 'blank']);
 
 Route::get('/media', [MediaController::class, 'index']);
+
+Route::get('/gallery', [GalleryController::class, 'index']);
+Route::get('/gallery-create', [GalleryController::class, 'create']);
+Route::post('gallery/upload', [App\Http\Controllers\GalleryController::class, 'upload']);
+
+
+Route::get('/comment', [CommentsController::class, 'index']);
+
+Route::get('/replies', [RepliesController::class, 'index']);
 
 Route::get('/upload-media', [ MediaController::class, 'store']);
 // Route::post('/upload-media', [App\Http\Controllers\MediaController::class, 'store']);

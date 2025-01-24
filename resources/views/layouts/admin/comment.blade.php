@@ -98,12 +98,6 @@
             </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{url('/gallery')}}">
-              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Gallery</span>
-            </a>
-					</li>
-
 					
 <!-- 
 					<li class="sidebar-header">
