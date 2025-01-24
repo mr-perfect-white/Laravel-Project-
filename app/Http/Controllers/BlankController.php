@@ -32,24 +32,30 @@ class BlankController extends Controller
 
     public function store()
     {
-        // Validate input data
         $inputs = request()->validate([
+            'user_id' => 'required|string|max:255',
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'image' => 'file|nullable'
+            'body_content' => 'required|string',
+            'image' => 'file|required'
         ]);
-
-        // Handle image upload if it exists
+    
+        // Handle the file upload
         if (request()->hasFile('image')) {
             $path = request()->file('image')->store('images', 'public');
-            $inputs['image'] = $path;  // Store the file path
+            $inputs['image'] = $path; // Save the file path
         }
+    
+        // Save the data in the database
+    \App\Models\News::create($inputs);
 
+    // Redirect with a success message
+    return redirect()->back()->with('success', 'Post created successfully!');
+        // (dd($inputs));
         // Store the news for the authenticated user
-        auth()->user()->news()->create($inputs);  // Use 'news' method (defined in User model)
+        // auth()->user()->news()->create($inputs);  // Use 'news' method (defined in User model)
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'News created successfully!');
+        // return redirect()->back()->with('success', 'News created successfully!');
     }
 
 

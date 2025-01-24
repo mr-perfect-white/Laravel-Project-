@@ -19,7 +19,41 @@
 	<link href="{{('assets/admin/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-
+<style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+        .pagination {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .pagination button {
+            padding: 10px 15px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+        .pagination button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
 <body>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
@@ -38,19 +72,14 @@
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
-					<li class="sidebar-item active">
+					<li class="sidebar-item ">
 						<a class="sidebar-link" href="{{url('page-blank')}}">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Create post</span>
             </a>
 					</li>
-					<li class="sidebar-item">
+					<li class="sidebar-item   active">
 						<a class="sidebar-link" href="{{url('/view-post')}}">
               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">View Posts</span>
-            </a>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{url('/user')}}">
-              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">User Profile</span>
             </a>
 					</li>
 
@@ -294,49 +323,32 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">New Posts</h1>
+					<h1 class="h3 mb-3">Media</h1>
 
-					<div class="row">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>1</td>
+                            <td><img src="image1.jpg" alt="Image 1" width="100"></td>
+                            <td>2025-01-24 12:00:00</td>
+                            </tr>
+                            <tr>
+                            <td>2</td>
+                            <td><img src="image2.jpg" alt="Image 2" width="100"></td>
+                            <td>2025-01-24 12:30:00</td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                        </table>
 
-					<form action="{{ route('layouts.admin.page-blank.store') }}" method="POST" enctype="multipart/form-data">
-						@csrf
-
-						<div class="form-group mb-4">
-							<label for="user_id">User id :</label>
-							<input type="text" name="user_id" id="user_id" class="form-control"  required>
-							@error('title')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<div class="form-group mb-4">
-							<label for="title">Title:</label>
-							<input type="text" name="title" id="title" class="form-control"  required>
-							@error('title')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<div class="form-group mb-4">
-							<label for="image">Image:</label>
-							<input type="file" name="image" id="image" class="form-control" required>
-							@error('image')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<div class="form-group mb-4">
-							<label for="content">Body Content:</label>
-							<textarea name="content" id="content" class="form-control" rows="5" required></textarea>
-							@error('content')
-								<div class="text-danger">{{ $message }}</div>
-							@enderror
-						</div>
-
-						<button type="submit" class="btn btn-primary mt-3">Create Post</button>
-					</form>
-						
-					</div>
+					
 
 				</div>
 			</main>
@@ -372,6 +384,39 @@
 	</div>
 
 	<script src="{{('assets/admin/js/app.js')}} "></script>
+
+    <script>
+        const rowsPerPage = 7;
+        let currentPage = 1;
+        const table = document.getElementById("dummyTable");
+        const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+        function showPage(page) {
+            for (let i = 0; i < totalRows; i++) {
+                rows[i].style.display = (i >= (page - 1) * rowsPerPage && i < page * rowsPerPage) ? "table-row" : "none";
+            }
+            document.getElementById("prevBtn").disabled = page === 1;
+            document.getElementById("nextBtn").disabled = page === totalPages;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        showPage(currentPage);
+    </script>
 
 </body>
 

@@ -15,6 +15,7 @@ use App\config\mail;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BlankController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,11 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 // Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
 Route::get('/page-blank', [BlankController::class, 'blank']);
+
+Route::get('/media', [MediaController::class, 'index']);
+
+Route::get('/upload-media', [ MediaController::class, 'store']);
+// Route::post('/upload-media', [App\Http\Controllers\MediaController::class, 'store']);
 
 Route::get('/view-post', [BlankController::class, 'view']);
 

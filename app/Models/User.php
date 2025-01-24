@@ -18,6 +18,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(News::class);
     }
+    public function store_table(): HasMany
+    {
+        return $this->hasMany(Store_table::class);
+    }
     
 }
 
