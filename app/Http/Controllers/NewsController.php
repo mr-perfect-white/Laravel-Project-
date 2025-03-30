@@ -26,25 +26,6 @@ class NewsController extends Controller
         // Return the view with the news item
         return view('blog.show', compact('newsItem'));
     }
-
-    public function blogpost(){
-
-        return view('blog-post');
-    }
-    public function show1($id)
-    {
-        // Retrieve the news item by ID
-        $newsItem = News::findOrFail($id);
-    
-        // Return the view with the news item
-        return view('blog-post', compact('newsItem'));
-    }
-    // public function show($id)
-    // {
-    //     $news = News::findOrFail($id);
-    //     return view('blog-post', ['news' => $news]);
-    // }
-    
     
 
 
